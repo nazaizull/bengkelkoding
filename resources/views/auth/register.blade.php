@@ -1,164 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{asset('lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('lte/dist/css/adminlte.min.css')}}">
-
-  <!-- Custom styles for register -->
-  <style>
-    body {
-      background: linear-gradient(to right, #00bcd4, #8e44ad);
-      font-family: 'Source Sans Pro', sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
-    .register-box {
-      width: 100%;
-      max-width: 400px;
-    }
-    .card {
-      border-radius: 15px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .card-header {
-      background-color: #007bff;
-      color: white;
-      border-radius: 15px 15px 0 0;
-      text-align: center;
-    }
-    .card-body {
-      padding: 30px;
-    }
-    .btn-primary {
-      background-color: #007bff;
-      border-color: #007bff;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-    .btn-primary:hover {
-      background-color: #0056b3;
-      border-color: #0056b3;
-    }
-    .login-box-msg {
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .input-group-text {
-      background-color: #f1f1f1;
-    }
-    label {
-      font-size: 1rem;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register - Klinik Sehat Bersama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="./register" class="h1"><b>Register</b>Page</a>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Silahkan Register</p>
+<body class="bg-gray-50 font-inter flex flex-col min-h-screen">
 
-      <form action="/register" method="post">
-        @csrf
-
-        <!-- Nama Lengkap -->
-        <label for="nama">Nama Lengkap</label>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+    <!-- Navbar -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-600">Klinik Sehat Bersama</h1>
+            <nav>
+                <a href="/" class="text-gray-700 hover:text-blue-600 mx-2">Beranda</a>
+                <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-4">Login</a>
+            </nav>
         </div>
+    </header>
 
-        <!-- Alamat -->
-        <label for="alamat">Alamat</label>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marker-alt"></span>
-            </div>
-          </div>
+    <!-- Register Form -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4">
+        <div class="max-w-lg w-full bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">Daftar Akun Baru</h2>
+
+            <form action="/register" method="POST" class="space-y-5">
+                @csrf
+
+                <div>
+                    <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" name="nama" id="nama" placeholder="Masukkan Nama Lengkap"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+
+                <div>
+                    <label for="alamat" class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+                    <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+
+                <div>
+                    <label for="no_ktp" class="block text-sm font-medium text-gray-700 mb-1">Nomor KTP</label>
+                    <input type="text" name="no_ktp" id="no_ktp" placeholder="Masukkan Nomor KTP"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+
+                <div>
+                    <label for="no_hp" class="block text-sm font-medium text-gray-700 mb-1">Nomor HP</label>
+                    <input type="text" name="no_hp" id="no_hp" placeholder="Masukkan Nomor HP"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Masukkan Email"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Masukkan Password"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition font-semibold">
+                    Daftar
+                </button>
+            </form>
+
+            <p class="mt-4 text-center text-sm text-gray-600">
+                Sudah punya akun?
+                <a href="/login" class="text-blue-600 hover:underline">Login di sini</a>
+            </p>
         </div>
+    </main>
 
-        <!-- Nomor HP -->
-        <label for="no_hp">Nomor HP</label>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan Nomor HP" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-phone"></span>
-            </div>
-          </div>
-        </div>
+    <!-- Footer -->
+    <footer class="bg-white py-4 text-center text-gray-500">
+        © 2025 Klinik Sehat Bersama. All rights reserved.
+    </footer>
 
-        <!-- Email -->
-        <label for="email">Email</label>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Password -->
-        <label for="password">Password</label>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Register Button -->
-        <div class="row">
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
-          </div>
-        </div>
-      </form>
-
-      <!-- Login Link -->
-      <p class="mb-0 text-center">
-        <a href="/login" class="text-center">Sudah Punya Akun? Login</a>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- jQuery -->
-<script src="{{asset('lte/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('lte/dist/js/adminlte.min.js')}}"></script>
 </body>
 </html>

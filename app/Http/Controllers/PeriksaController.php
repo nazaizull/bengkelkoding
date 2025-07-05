@@ -26,22 +26,14 @@ class PeriksaController extends Controller
     public function store(Request $req) {
         $req->validate([
             'id_dokter' => ['required'],
-            'catatan' => ['nullable', 'string'],  // Validasi untuk catatan
-            'biaya_periksa' => ['nullable', 'numeric'],  // Validasi untuk biaya periksa
         ]);
-    
-        // Menambahkan data untuk insert ke tabel periksas
         $data = [
             'id_dokter' => $req['id_dokter'],
             'id_pasien' => Auth::id(),
-            'catatan' => $req->catatan ?? 'No notes provided',  // Jika tidak ada catatan, berikan nilai default
-            'biaya_periksa' => $req->biaya_periksa ?? 0,  // Jika tidak ada biaya, berikan nilai default 0
         ];
-    
-        // Menyimpan data ke tabel periksas
+
         Periksa::create($data);
-    
+
         return redirect('/pasien/periksa')->with('success', 'Periksa berhasil ditambahkan');
     }
-    
 }

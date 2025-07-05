@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -20,22 +19,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'nama',
+        'alamat',
+        'no_hp',
+        'no_ktp',
+        'no_rm',
+        'id_poli',
+        'role',
         'email',
         'password',
-        'no_hp',
-        'role',
-        'alamat'
     ];
-    // Relasi ke Periksa Sebagai Pasien
-    public function pasien(): HasMany
-    {
-        return $this->hasMany(Periksa::class,'id_pasien');
-    }
-    // Relasi ke Periksa Sebagai Dokter
-    public function dokter(): HasMany
-    {
-        return $this->hasMany(Periksa::class,'id_dokter');
-    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -58,5 +50,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function daftar_poli_pasien()
+    {
+        return $this->hasMany(DaftarPoli::class, 'id_pasien');
+    }
+
+    public function jadwal_periksa_dokter()
+    {
+        return $this->hasMany(JadwalPeriksa::class, 'id_dokter');
+    }
+
+    public function poli()
+    {
+        return $this->belongsTo(Poli::class, 'id_poli');
     }
 }

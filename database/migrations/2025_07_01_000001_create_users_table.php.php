@@ -15,15 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('alamat');
-            $table->string('no_hp')->unique();
-            $table->string('role');
+            $table->string('no_hp');
+            $table->string('no_ktp')->nullable();
+            $table->string('no_rm')->nullable();
+            $table->foreignId('id_poli')->nullable()->constrained('polis')->onDelete('set null');
+            $table->enum('role', ['dokter', 'pasien', 'admin']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
-
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
